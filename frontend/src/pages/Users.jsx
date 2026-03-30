@@ -138,32 +138,33 @@ const Users = () => {
         )}
 
         {/* TABLE */}
-        <table className="w-full text-sm">
-          <thead>
+        <table className="w-full text-sm border-collapse">
+          <thead className="bg-gray-100 text-gray-600">
             <tr>
-              <th>Name</th>
-              <th>Email</th>
-              <th>Role</th>
-              <th>Department</th>
-              <th>Actions</th>
+              <th className="text-left p-3">Name</th>
+              <th className="text-left p-3">Email</th>
+              <th className="text-left p-3">Role</th>
+              <th className="text-left p-3">Department</th>
+              <th className="text-left p-3">Actions</th>
             </tr>
           </thead>
 
           <tbody>
             {users.map((u) => (
-              <tr key={u.id}>
+              <tr key={u.id} className="border-t hover:bg-gray-50">
 
-                <td>{u.name}</td>
-                <td>{u.email}</td>
+                <td className="p-3">{u.name}</td>
+                <td className="p-3">{u.email}</td>
 
                 {/* ROLE */}
-                <td>
+                <td className="p-3">
                   {editUser?.id === u.id ? (
                     <select
                       value={editUser.roleId}
                       onChange={(e) =>
                         setEditUser({ ...editUser, roleId: e.target.value })
                       }
+                      className="border rounded p-1"
                     >
                       {roles.map((r) => (
                         <option key={r.id} value={r.id}>
@@ -177,7 +178,7 @@ const Users = () => {
                 </td>
 
                 {/* DEPARTMENT */}
-                <td>
+                <td className="p-3">
                   {editUser?.id === u.id ? (
                     <select
                       value={editUser.departmentId}
@@ -187,6 +188,7 @@ const Users = () => {
                           departmentId: e.target.value,
                         })
                       }
+                      className="border rounded p-1"
                     >
                       {departments.map((d) => (
                         <option key={d.id} value={d.id}>
@@ -200,48 +202,48 @@ const Users = () => {
                 </td>
 
                 {/* ACTIONS */}
-                <td className="flex items-center gap-2">
+                <td className="p-3">
+                  <div className="flex gap-2">
 
-                {/* EDIT / SAVE */}
-                {hasPermission(user, "edit_user") &&
-                  (editUser?.id === u.id ? (
-                    <button
-                      onClick={handleUpdate}
-                      className="bg-green-500 hover:bg-green-600 text-white px-3 py-1 rounded-lg text-sm font-medium shadow transition duration-200"
-                    >
-                      Save
-                    </button>
-                  ) : (
-                    <button
-                      onClick={() =>
-                        setEditUser({
-                          ...u,
-                          roleId: u.roleId,
-                          departmentId: u.departmentId,
-                        })
-                      }
-                      className="bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded-lg text-sm font-medium shadow transition duration-200"
-                    >
-                      Edit
-                    </button>
-                  ))}
+                    {hasPermission(user, "edit_user") &&
+                      (editUser?.id === u.id ? (
+                        <button
+                          onClick={handleUpdate}
+                          className="bg-green-500 hover:bg-green-600 text-white px-3 py-1 rounded-lg text-sm font-medium shadow transition"
+                        >
+                          Save
+                        </button>
+                      ) : (
+                        <button
+                          onClick={() =>
+                            setEditUser({
+                              ...u,
+                              roleId: u.roleId,
+                              departmentId: u.departmentId,
+                            })
+                          }
+                          className="bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded-lg text-sm font-medium shadow transition"
+                        >
+                          Edit
+                        </button>
+                      ))}
 
-                {/* DELETE */}
-                {hasPermission(user, "delete_user") && (
-                  <button
-                    onClick={() => handleDelete(u.id)}
-                    className="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded-lg text-sm font-medium shadow transition duration-200"
-                  >
-                    Delete
-                  </button>
-                )}
+                    {hasPermission(user, "delete_user") && (
+                      <button
+                        onClick={() => handleDelete(u.id)}
+                        className="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded-lg text-sm font-medium shadow transition"
+                      >
+                        Delete
+                      </button>
+                    )}
 
+                  </div>
                 </td>
 
               </tr>
             ))}
           </tbody>
-        </table>
+          </table>
       </div>
     </div>
   );
