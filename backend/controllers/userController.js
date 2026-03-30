@@ -1,7 +1,7 @@
 const { User, Role, Department } = require("../models");
 const bcrypt = require("bcryptjs");
 
-// ✅ Create User
+//Create User
 exports.createUser = async (req, res) => {
   try {
     const { name, email, password, roleId, departmentId } = req.body;
@@ -27,7 +27,7 @@ exports.createUser = async (req, res) => {
   }
 };
 
-// ✅ Get All Users
+//Get All Users
 exports.getUsers = async (req, res) => {
   try {
     const users = await User.findAll({
@@ -50,7 +50,7 @@ exports.getUsers = async (req, res) => {
   }
 };
 
-// ✅ Update User
+//Update User
 exports.updateUser = async (req, res) => {
   try {
     const { roleId, departmentId } = req.body;
@@ -68,7 +68,7 @@ exports.updateUser = async (req, res) => {
   }
 };
 
-// ✅ Delete User
+//Delete User
 exports.deleteUser = async (req, res) => {
   try {
     await User.destroy({

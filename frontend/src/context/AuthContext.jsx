@@ -8,7 +8,7 @@ export const AuthProvider = ({ children }) => {
   );
 
   const login = (data) => {
-    // ✅ Normalize data (IMPORTANT)
+    //Normalize data (IMPORTANT)
     const userData = {
       id: data.id,
       name: data.name,

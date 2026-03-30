@@ -17,7 +17,7 @@ const Layout = () => {
 
         {/* Page Content */}
         <div className="p-6">
-          <Outlet />   {/* 🔥 VERY IMPORTANT */}
+          <Outlet /> 
         </div>
 
       </div>
