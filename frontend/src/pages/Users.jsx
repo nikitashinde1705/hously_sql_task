@@ -200,30 +200,41 @@ const Users = () => {
                 </td>
 
                 {/* ACTIONS */}
-                <td>
+                <td className="flex items-center gap-2">
 
-                  {hasPermission(user, "edit_user") &&
-                    (editUser?.id === u.id ? (
-                      <button onClick={handleUpdate}>Save</button>
-                    ) : (
-                      <button
-                        onClick={() =>
-                          setEditUser({
-                            ...u,
-                            roleId: u.roleId,
-                            departmentId: u.departmentId,
-                          })
-                        }
-                      >
-                        Edit
-                      </button>
-                    ))}
-
-                  {hasPermission(user, "delete_user") && (
-                    <button onClick={() => handleDelete(u.id)}>
-                      Delete
+                {/* EDIT / SAVE */}
+                {hasPermission(user, "edit_user") &&
+                  (editUser?.id === u.id ? (
+                    <button
+                      onClick={handleUpdate}
+                      className="bg-green-500 hover:bg-green-600 text-white px-3 py-1 rounded-lg text-sm font-medium shadow transition duration-200"
+                    >
+                      Save
                     </button>
-                  )}
+                  ) : (
+                    <button
+                      onClick={() =>
+                        setEditUser({
+                          ...u,
+                          roleId: u.roleId,
+                          departmentId: u.departmentId,
+                        })
+                      }
+                      className="bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded-lg text-sm font-medium shadow transition duration-200"
+                    >
+                      Edit
+                    </button>
+                  ))}
+
+                {/* DELETE */}
+                {hasPermission(user, "delete_user") && (
+                  <button
+                    onClick={() => handleDelete(u.id)}
+                    className="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded-lg text-sm font-medium shadow transition duration-200"
+                  >
+                    Delete
+                  </button>
+                )}
 
                 </td>
 
