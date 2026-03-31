@@ -6,6 +6,11 @@ exports.createDepartment = async (req, res) => {
 
     //1: Get data from request body
     const { name } = req.body;
+
+    //validation
+    if (!name || name.trim() === "") {
+      return res.status(400).json({ message: "Department name is required" });
+    }
     //2:Create department in DB
     const department = await Department.create({ name });
     //3:Return created department
