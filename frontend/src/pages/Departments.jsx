@@ -65,11 +65,14 @@ const Departments = () => {
             </thead>
 
             <tbody>
-              {departments.map((d) => (
+              {departments.map((d) => {
+                console.log("Rendering department:", d);
+                return (
                 <tr key={d._id} className="border-b hover:bg-gray-50">
                   <td className="p-3 font-medium">{d.name}</td>
                 </tr>
-              ))}
+                );
+                })}
             </tbody>
 
           </table>
